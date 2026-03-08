@@ -435,7 +435,7 @@
       align-items: center; justify-content: center;
     }
     .lightbox img {
-      max-width: 92vw; max-height: 90vh;
+      max-width: 96vw; max-height: 94vh;
       border-radius: 4px;
       box-shadow: 0 24px 80px rgba(0,0,0,.6);
     }
@@ -484,6 +484,7 @@
 <nav>
   <div class="nav-logo">IIS Mendel · Agriculture CLIL</div>
   <ul class="nav-links">
+    <li><a href="#video">Video</a></li>
     <li><a href="#topics">Topics</a></li>
     <li><a href="#infographics">Visuals</a></li>
     <li><a href="#glossary">Glossary</a></li>
@@ -507,7 +508,7 @@
     </div>
   </div>
   <div class="hero-visual">
-    <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="Agriculture infographic" onerror="this.parentElement.style.opacity='0'" />
+    <img src="vlcsnap-2026-03-08-09h41m31s712.png" alt="Agriculture: Past to Future" onerror="this.parentElement.style.opacity='0'" />
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">6</div><div class="stat-label">Core Topics</div></div>
@@ -593,18 +594,33 @@
   </div>
 </section>
 
+<!-- VIDEO -->
+<section id="video" style="background:#0e1a10; padding:5rem 6rem; text-align:center;">
+  <div class="section-tag" style="color:var(--lime);font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;">Video Lesson</div>
+  <h2 style="color:white; margin-bottom:.75rem;">Agriculture: Past to Future</h2>
+  <p style="color:rgba(255,255,255,.5); margin-bottom:2rem; font-size:1rem;">Watch the full video overview before diving into the topics.</p>
+  <video
+    controls
+    preload="metadata"
+    style="width:100%; max-width:860px; border-radius:8px; border:1px solid rgba(255,255,255,.1); display:block; margin:0 auto;"
+    poster="vlcsnap-2026-03-08-09h41m31s712.png">
+    <source src="Agriculture__Past_To_Future.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
 <!-- INFOGRAPHICS -->
 <section id="infographics">
   <div class="section-tag">Visual Study Materials</div>
-  <h2 style="color:white">Infographics & Visuals</h2>
-  <p class="section-intro">Click any image to view full-size. These visual summaries are ideal for last-minute revision.</p>
-  <div class="infographics-grid">
+  <h2 style="color:var(--green-dark)">Infographics & Visuals</h2>
+  <p class="section-intro" style="color:var(--text-muted)">Click any image to view full-size. These visual summaries are ideal for last-minute revision.</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
     <div class="infographic-card reveal" data-lightbox="Modern_Agronomist_s_Sustainability_Review.png">
-      <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="The Modern Agronomist's Review" onerror="this.parentElement.style.display='none'" />
+      <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="The Modern Agronomist's Review" onerror="this.closest('.infographic-card').style.display='none'" />
       <div class="infographic-caption">🗺 The Modern Agronomist's Review — Balancing Scale, Science &amp; Sustainability</div>
     </div>
-    <div class="infographic-card reveal reveal-delay-1" data-lightbox="Timeline_of_Agricultural_Evolution.png">
-      <img src="Timeline_of_Agricultural_Evolution.png" alt="Timeline of Agricultural Evolution" onerror="this.parentElement.style.display='none'" />
+    <div class="infographic-card reveal reveal-delay-1" data-lightbox="timeline.png">
+      <img src="timeline.png" alt="Timeline of Agricultural Evolution" onerror="this.closest('.infographic-card').style.display='none'" />
       <div class="infographic-caption">📅 Timeline — From Paleolithic Roots to Soilless Futures</div>
     </div>
   </div>
@@ -776,6 +792,12 @@
       <h4>Infographic Posters</h4>
       <p>High-resolution visual summaries: Agronomist's Review, Evolution Timeline, and Mind Map.</p>
       <a class="resource-link" href="Modern_Agronomist_s_Sustainability_Review.png" download>Download PNG →</a>
+    </div>
+    <div class="resource-card reveal">
+      <div class="resource-icon">🎬</div>
+      <h4>Video — Agriculture: Past to Future</h4>
+      <p>Full video lesson covering the evolution of agriculture from prehistoric times to modern soilless cultivation.</p>
+      <a class="resource-link" href="Agriculture__Past_To_Future.mp4" download>Download MP4 →</a>
     </div>
   </div>
 </section>
