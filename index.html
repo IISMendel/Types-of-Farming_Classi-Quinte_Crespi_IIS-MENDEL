@@ -434,7 +434,6 @@
       background: rgba(0,0,0,.92);
       align-items: center; justify-content: center;
     }
-    .lightbox.open { display: flex; }
     .lightbox img {
       max-width: 92vw; max-height: 90vh;
       border-radius: 4px;
@@ -508,7 +507,7 @@
     </div>
   </div>
   <div class="hero-visual">
-    <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="Agriculture infographic" />
+    <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="Agriculture infographic" onerror="this.parentElement.style.opacity='0'" />
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">6</div><div class="stat-label">Core Topics</div></div>
@@ -600,12 +599,12 @@
   <h2 style="color:white">Infographics & Visuals</h2>
   <p class="section-intro">Click any image to view full-size. These visual summaries are ideal for last-minute revision.</p>
   <div class="infographics-grid">
-    <div class="infographic-card reveal" onclick="openLightbox('Modern_Agronomist_s_Sustainability_Review.png')">
-      <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="The Modern Agronomist's Review" />
-      <div class="infographic-caption">🗺 The Modern Agronomist's Review — Balancing Scale, Science & Sustainability</div>
+    <div class="infographic-card reveal" data-lightbox="Modern_Agronomist_s_Sustainability_Review.png">
+      <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="The Modern Agronomist's Review" onerror="this.parentElement.style.display='none'" />
+      <div class="infographic-caption">🗺 The Modern Agronomist's Review — Balancing Scale, Science &amp; Sustainability</div>
     </div>
-    <div class="infographic-card reveal reveal-delay-1" onclick="openLightbox('Timeline_of_Agricultural_Evolution.png')">
-      <img src="Timeline_of_Agricultural_Evolution.png" alt="Timeline of Agricultural Evolution" />
+    <div class="infographic-card reveal reveal-delay-1" data-lightbox="Timeline_of_Agricultural_Evolution.png">
+      <img src="Timeline_of_Agricultural_Evolution.png" alt="Timeline of Agricultural Evolution" onerror="this.parentElement.style.display='none'" />
       <div class="infographic-caption">📅 Timeline — From Paleolithic Roots to Soilless Futures</div>
     </div>
   </div>
@@ -616,7 +615,7 @@
   <div class="section-tag" style="color:var(--lime);font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;">Mind Map</div>
   <h2>Full Topic Overview</h2>
   <p>A structured mind map of all six topic areas and their key sub-concepts.</p>
-  <img src="NotebookLM_Mind_Map.png" alt="Mind Map of Modern Agriculture topics" onclick="openLightbox('NotebookLM_Mind_Map.png')" style="cursor:zoom-in;" />
+  <img src="NotebookLM_Mind_Map.png" alt="Mind Map of Modern Agriculture topics" data-lightbox="NotebookLM_Mind_Map.png" style="cursor:zoom-in;" onerror="this.style.display='none'" />
 </section>
 
 <!-- GLOSSARY -->
@@ -686,15 +685,9 @@
     <div class="quiz-q reveal">
       <div class="quiz-q-text">1. Which type of water refers to the <em>rainwater</em> used directly by crops?</div>
       <div class="quiz-options">
-        <div class="quiz-opt" onclick="answer(this, false, 'Blue water is surface/groundwater used for irrigation.')">
-          <span class="quiz-opt-letter">A</span> Blue water
-        </div>
-        <div class="quiz-opt" onclick="answer(this, false, 'Grey water is used to dilute pollutants to quality standards.')">
-          <span class="quiz-opt-letter">B</span> Grey water
-        </div>
-        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Green water is the rainwater stored in the soil and used by plants.')">
-          <span class="quiz-opt-letter">C</span> Green water
-        </div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">A</span> Blue water</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">B</span> Grey water</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">C</span> Green water</div>
       </div>
       <div class="quiz-feedback"></div>
     </div>
@@ -702,15 +695,9 @@
     <div class="quiz-q reveal reveal-delay-1">
       <div class="quiz-q-text">2. Agroforestry helps mitigate climate change primarily by…</div>
       <div class="quiz-options">
-        <div class="quiz-opt" onclick="answer(this, false, 'Agroforestry actually reduces chemical dependency rather than increasing it.')">
-          <span class="quiz-opt-letter">A</span> Increasing the use of inorganic fertilizers
-        </div>
-        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Trees in agroforestry systems sequester carbon in biomass and soil, and reduce erosion.')">
-          <span class="quiz-opt-letter">B</span> Storing carbon in trees and soil
-        </div>
-        <div class="quiz-opt" onclick="answer(this, false, 'Agroforestry does not eliminate livestock — it often integrates them.')">
-          <span class="quiz-opt-letter">C</span> Eliminating the need for livestock
-        </div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">A</span> Increasing the use of inorganic fertilizers</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">B</span> Storing carbon in trees and soil</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">C</span> Eliminating the need for livestock</div>
       </div>
       <div class="quiz-feedback"></div>
     </div>
@@ -718,15 +705,9 @@
     <div class="quiz-q reveal reveal-delay-2">
       <div class="quiz-q-text">3. "Lure" crops in organic farming are used to…</div>
       <div class="quiz-options">
-        <div class="quiz-opt" onclick="answer(this, false, 'Lure crops are not replacements for the main crop.')">
-          <span class="quiz-opt-letter">A</span> Replace the main crop in low-yield seasons
-        </div>
-        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Lure crops attract beneficial insects like ladybirds that act as natural predators to pests.')">
-          <span class="quiz-opt-letter">B</span> Attract beneficial insects like ladybirds
-        </div>
-        <div class="quiz-opt" onclick="answer(this, false, 'Organic farming bans synthetic hormones entirely.')">
-          <span class="quiz-opt-letter">C</span> Increase the use of synthetic hormones
-        </div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">A</span> Replace the main crop in low-yield seasons</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">B</span> Attract beneficial insects like ladybirds</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">C</span> Increase the use of synthetic hormones</div>
       </div>
       <div class="quiz-feedback"></div>
     </div>
@@ -734,15 +715,9 @@
     <div class="quiz-q reveal reveal-delay-3">
       <div class="quiz-q-text">4. Producing 1 kg of beef requires approximately how many litres of water?</div>
       <div class="quiz-options">
-        <div class="quiz-opt" onclick="answer(this, false, '1,500 litres is a significant underestimate for beef production.')">
-          <span class="quiz-opt-letter">A</span> ~1,500 litres
-        </div>
-        <div class="quiz-opt" onclick="answer(this, false, '5,000 litres is still far below the actual figure.')">
-          <span class="quiz-opt-letter">B</span> ~5,000 litres
-        </div>
-        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Producing 1 kg of beef requires more than 15,000 litres (93% green, 4% blue, 3% grey water).')">
-          <span class="quiz-opt-letter">C</span> &gt;15,000 litres
-        </div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">A</span> ~1,500 litres</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">B</span> ~5,000 litres</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">C</span> &gt;15,000 litres</div>
       </div>
       <div class="quiz-feedback"></div>
     </div>
@@ -750,15 +725,9 @@
     <div class="quiz-q reveal reveal-delay-4">
       <div class="quiz-q-text">5. What is the main difference between hydroponics and aeroponics?</div>
       <div class="quiz-options">
-        <div class="quiz-opt" onclick="answer(this, false, 'Both techniques actually use no traditional soil at all.')">
-          <span class="quiz-opt-letter">A</span> Hydroponics uses soil; aeroponics does not
-        </div>
-        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Hydroponics uses a liquid nutrient solution; aeroponics mists roots suspended in air with no liquid medium.')">
-          <span class="quiz-opt-letter">B</span> Hydroponics uses a liquid medium; aeroponics mists roots in air
-        </div>
-        <div class="quiz-opt" onclick="answer(this, false, 'It is aeroponics, not hydroponics, that provides maximum root aeration.')">
-          <span class="quiz-opt-letter">C</span> Hydroponics provides more root aeration than aeroponics
-        </div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">A</span> Hydroponics uses soil; aeroponics does not</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">B</span> Hydroponics uses a liquid medium; aeroponics mists roots in air</div>
+        <div class="quiz-opt"><span class="quiz-opt-letter">C</span> Hydroponics provides more root aeration than aeroponics</div>
       </div>
       <div class="quiz-feedback"></div>
     </div>
@@ -821,45 +790,74 @@
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="Full size" />
-</div>
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="Full size" /></div>
 
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.addEventListener('DOMContentLoaded', function() {
 
-  // Lightbox
-  function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    // ── Scroll reveal ──
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 
-  // Quiz
-  function answer(el, correct, feedback) {
-    const q = el.closest('.quiz-q');
-    if (q.dataset.answered) return;
-    q.dataset.answered = '1';
-    const opts = q.querySelectorAll('.quiz-opt');
-    opts.forEach(o => o.style.pointerEvents = 'none');
-    el.classList.add(correct ? 'correct' : 'wrong');
-    if (!correct) {
-      opts.forEach(o => { if (o.getAttribute('onclick').includes('true')) o.classList.add('correct'); });
+    // ── Lightbox ──
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src) {
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     }
-    const fb = q.querySelector('.quiz-feedback');
-    fb.textContent = (correct ? '✓ ' : '✗ ') + feedback;
-    fb.className = 'quiz-feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
-  }
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // Attach lightbox to all elements with data-lightbox attribute
+    document.querySelectorAll('[data-lightbox]').forEach(function(el) {
+      el.style.cursor = 'zoom-in';
+      el.addEventListener('click', function() {
+        openLightbox(el.getAttribute('data-lightbox'));
+      });
+    });
+
+    // Close lightbox
+    lightbox.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+
+    // ── Quiz ──
+    var quizData = [
+      { correct: 2, feedback: ['Blue water is surface/groundwater used for irrigation.', 'Grey water is used to dilute pollutants to quality standards.', 'Correct! Green water is the rainwater stored in the soil and used by plants.'] },
+      { correct: 1, feedback: ['Agroforestry actually reduces chemical dependency.', 'Correct! Trees in agroforestry sequester carbon in biomass and soil, and reduce erosion.', 'Agroforestry does not eliminate livestock — it often integrates them.'] },
+      { correct: 1, feedback: ['Lure crops are not replacements for the main crop.', 'Correct! Lure crops attract beneficial insects like ladybirds that act as natural predators to pests.', 'Organic farming bans synthetic hormones entirely.'] },
+      { correct: 2, feedback: ['1,500 litres is a significant underestimate.', '5,000 litres is still far below the actual figure.', 'Correct! Producing 1 kg of beef requires more than 15,000 litres (93% green, 4% blue, 3% grey water).'] },
+      { correct: 1, feedback: ['Both techniques use no traditional soil.', 'Correct! Hydroponics uses a liquid nutrient solution; aeroponics mists roots suspended in air.', 'It is aeroponics, not hydroponics, that provides maximum root aeration.'] }
+    ];
+
+    document.querySelectorAll('.quiz-q').forEach(function(q, qi) {
+      var opts = q.querySelectorAll('.quiz-opt');
+      var fb = q.querySelector('.quiz-feedback');
+      var data = quizData[qi];
+      opts.forEach(function(opt, oi) {
+        opt.addEventListener('click', function() {
+          if (q.dataset.answered) return;
+          q.dataset.answered = '1';
+          opts.forEach(function(o) { o.style.pointerEvents = 'none'; });
+          var correct = (oi === data.correct);
+          opt.classList.add(correct ? 'correct' : 'wrong');
+          if (!correct) opts[data.correct].classList.add('correct');
+          fb.textContent = (correct ? '✓ ' : '✗ ') + data.feedback[oi];
+          fb.className = 'quiz-feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
+        });
+      });
+    });
+
+  });
 </script>
 </body>
 </html>
