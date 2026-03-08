@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Agriculture & Cultivation Methods — IIS Mendel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:   #1a3d1f;
+      --green-mid:    #2d6a35;
+      --green-vivid:  #3d9b47;
+      --green-light:  #a8d5a2;
+      --lime:         #c5e84a;
+      --earth:        #8b5e3c;
+      --sand:         #f5f0e8;
+      --cream:        #faf8f3;
+      --white:        #ffffff;
+      --text:         #1c2b1e;
+      --text-muted:   #5a6e5c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(250,248,243,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(45,106,53,0.12);
+    }
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem; letter-spacing: .12em;
+      color: var(--green-mid);
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: .875rem; font-weight: 500;
+      color: var(--text); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green-vivid); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--green-dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 70% 50%, rgba(61,155,71,.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 4rem 6rem 6rem;
+      position: relative; z-index: 2;
+    }
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem; letter-spacing: .2em;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block; width: 32px; height: 2px;
+      background: var(--lime);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--lime);
+    }
+    .hero-sub {
+      font-size: 1.1rem; line-height: 1.7;
+      color: rgba(255,255,255,.65);
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 3px;
+      font-size: .9rem; font-weight: 600;
+      text-decoration: none;
+      transition: all .25s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--lime);
+      color: var(--green-dark);
+    }
+    .btn-primary:hover { background: #d4f55a; transform: translateY(-2px); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,.35);
+      color: var(--white);
+      background: transparent;
+    }
+    .btn-outline:hover { border-color: var(--lime); color: var(--lime); }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: .55;
+      mix-blend-mode: luminosity;
+    }
+    .hero-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--green-dark) 0%, transparent 40%);
+    }
+
+    .hero-stats {
+      position: absolute; bottom: 3rem; left: 6rem;
+      display: flex; gap: 3rem; z-index: 3;
+    }
+    .stat { text-align: left; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--lime); line-height: 1;
+    }
+    .stat-label {
+      font-size: .75rem; color: rgba(255,255,255,.5);
+      margin-top: .25rem; letter-spacing: .05em;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 6rem; }
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem; letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--green-vivid);
+      margin-bottom: .75rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+    }
+    .section-intro {
+      font-size: 1.05rem; line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── TOPICS ── */
+    #topics { background: var(--sand); }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(45,106,53,.12);
+      border: 1.5px solid rgba(45,106,53,.12);
+    }
+    .topic-card {
+      background: var(--cream);
+      padding: 2.5rem;
+      transition: background .25s;
+      position: relative; overflow: hidden;
+    }
+    .topic-card:hover { background: var(--white); }
+    .topic-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--green-vivid);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .topic-card:hover::before { transform: scaleX(1); }
+    .topic-num {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem; color: var(--green-light);
+      letter-spacing: .1em; margin-bottom: 1.25rem;
+    }
+    .topic-icon {
+      font-size: 2rem; margin-bottom: 1rem;
+      display: block;
+    }
+    .topic-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: .75rem;
+    }
+    .topic-card p {
+      font-size: .9rem; line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .topic-tags { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .tag {
+      font-size: .7rem; font-weight: 600;
+      padding: .3rem .75rem;
+      border-radius: 2px;
+      background: rgba(61,155,71,.1);
+      color: var(--green-mid);
+      letter-spacing: .04em;
+    }
+
+    /* ── INFOGRAPHICS ── */
+    #infographics { background: var(--green-dark); padding: 6rem; }
+    #infographics .section-tag { color: var(--lime); }
+    #infographics h2 { color: var(--white); }
+    #infographics .section-intro { color: rgba(255,255,255,.55); }
+    .infographics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .infographic-card {
+      border-radius: 4px; overflow: hidden;
+      position: relative; cursor: pointer;
+      background: rgba(255,255,255,.04);
+    }
+    .infographic-card img {
+      width: 100%; display: block;
+      transition: transform .5s ease;
+    }
+    .infographic-card:hover img { transform: scale(1.03); }
+    .infographic-caption {
+      padding: 1.25rem 1.5rem;
+      font-size: .875rem; font-weight: 500;
+      color: rgba(255,255,255,.7);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .infographic-card.tall {
+      grid-row: span 2;
+    }
+    .infographic-card.tall img {
+      height: 100%; object-fit: cover;
+    }
+
+    /* ── GLOSSARY ── */
+    #glossary { background: var(--cream); }
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1.5px solid rgba(45,106,53,.15);
+    }
+    .gloss-item {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid rgba(45,106,53,.1);
+      border-right: 1px solid rgba(45,106,53,.1);
+      transition: background .2s;
+    }
+    .gloss-item:hover { background: rgba(61,155,71,.05); }
+    .gloss-term {
+      font-family: 'DM Mono', monospace;
+      font-size: .8rem; font-weight: 500;
+      color: var(--green-vivid);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .5rem;
+    }
+    .gloss-def {
+      font-size: .9rem; line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* ── QUIZ ── */
+    #quiz { background: var(--green-mid); }
+    #quiz h2 { color: var(--white); }
+    #quiz .section-intro { color: rgba(255,255,255,.65); }
+    #quiz .section-tag { color: var(--lime); }
+
+    .quiz-container {
+      max-width: 720px;
+    }
+    .quiz-q {
+      background: rgba(255,255,255,.08);
+      border-left: 3px solid var(--lime);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .quiz-q-text {
+      font-size: 1rem; font-weight: 500;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: .5rem; }
+    .quiz-opt {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .65rem 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background .2s;
+      font-size: .9rem; color: rgba(255,255,255,.75);
+    }
+    .quiz-opt:hover { background: rgba(255,255,255,.12); color: var(--white); }
+    .quiz-opt.correct { background: rgba(197,232,74,.2); color: var(--lime); font-weight: 600; }
+    .quiz-opt.wrong { background: rgba(255,80,80,.15); color: #ff9090; }
+    .quiz-opt-letter {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .quiz-feedback {
+      display: none;
+      margin-top: .75rem;
+      padding: .75rem 1rem;
+      border-radius: 3px;
+      font-size: .85rem;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: rgba(197,232,74,.15); color: var(--lime); }
+    .quiz-feedback.wrong-fb { background: rgba(255,80,80,.12); color: #ff9090; }
+
+    /* ── RESOURCES ── */
+    #resources { background: var(--sand); }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .resource-card {
+      background: var(--white);
+      border: 1px solid rgba(45,106,53,.12);
+      border-radius: 4px;
+      padding: 2rem;
+      display: flex; flex-direction: column;
+      gap: 1rem;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .resource-card:hover {
+      box-shadow: 0 8px 32px rgba(45,106,53,.12);
+      transform: translateY(-3px);
+    }
+    .resource-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(61,155,71,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .resource-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--green-dark);
+    }
+    .resource-card p {
+      font-size: .85rem; line-height: 1.55;
+      color: var(--text-muted);
+      flex: 1;
+    }
+    .resource-link {
+      font-size: .8rem; font-weight: 600;
+      color: var(--green-vivid);
+      text-decoration: none;
+      display: flex; align-items: center; gap: .3rem;
+    }
+    .resource-link:hover { color: var(--green-dark); }
+
+    /* ── MINDMAP ── */
+    #mindmap { background: #111c12; padding: 5rem 6rem; text-align: center; }
+    #mindmap h2 { color: var(--white); margin-bottom: 1rem; }
+    #mindmap p { color: rgba(255,255,255,.5); margin-bottom: 2.5rem; }
+    #mindmap img {
+      max-width: 600px; width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dark);
+      padding: 3rem 6rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-left p {
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.7;
+    }
+    .footer-left strong { color: var(--lime); font-weight: 600; }
+    .footer-right {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.25);
+      text-transform: uppercase;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,.92);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw; max-height: 90vh;
+      border-radius: 4px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.6);
+    }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      font-size: 2rem; color: rgba(255,255,255,.5);
+      cursor: pointer; line-height: 1;
+    }
+    .lightbox-close:hover { color: var(--white); }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-text { padding: 7rem 1.5rem 3rem; }
+      .hero-visual { display: none; }
+      .hero-stats { left: 1.5rem; bottom: 2rem; gap: 1.5rem; }
+      .topics-grid { grid-template-columns: 1fr; }
+      .infographics-grid { grid-template-columns: 1fr; }
+      .infographic-card.tall { grid-row: span 1; }
+      .glossary-grid { grid-template-columns: 1fr; }
+      .resources-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1.5rem; padding: 2.5rem 1.5rem; }
+      #infographics, #mindmap { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">IIS Mendel · Agriculture CLIL</div>
+  <ul class="nav-links">
+    <li><a href="#topics">Topics</a></li>
+    <li><a href="#infographics">Visuals</a></li>
+    <li><a href="#glossary">Glossary</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-tag">CLIL Exam Review Guide</div>
+    <h1>Modern<br/><em>Agriculture</em><br/>& Cultivation</h1>
+    <p class="hero-sub">
+      Explore industrial, sustainable, organic, and high-tech farming systems.
+      Understand their environmental impacts and the future of food production.
+    </p>
+    <div class="hero-cta">
+      <a href="#topics" class="btn btn-primary">Explore Topics ↓</a>
+      <a href="#quiz" class="btn btn-outline">Take the Quiz</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="Agriculture infographic" />
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Core Topics</div></div>
+    <div class="stat"><div class="stat-num">15k+</div><div class="stat-label">Litres / kg beef</div></div>
+    <div class="stat"><div class="stat-num">10k</div><div class="stat-label">BC — Neolithic Rev.</div></div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section id="topics">
+  <div class="section-tag">Core Curriculum</div>
+  <h2>Six Key Areas</h2>
+  <p class="section-intro">
+    From post-WWII industrial farming to soil-less vertical skyscrapers — master every paradigm covered in the CLIL exam module.
+  </p>
+  <div class="topics-grid">
+    <div class="topic-card reveal">
+      <div class="topic-num">01</div>
+      <span class="topic-icon">🏭</span>
+      <h3>Industrial Agriculture & Monoculture</h3>
+      <p>A chemically intensive system developed after WWII. Enormous single-crop farms relying on synthetic fertilizers, pesticides, and GMOs — producing high yields at serious environmental cost.</p>
+      <div class="topic-tags">
+        <span class="tag">Monoculture</span>
+        <span class="tag">GMOs</span>
+        <span class="tag">Soil Depletion</span>
+      </div>
+    </div>
+    <div class="topic-card reveal reveal-delay-1">
+      <div class="topic-num">02</div>
+      <span class="topic-icon">🌱</span>
+      <h3>Sustainable Agriculture</h3>
+      <p>Farming that protects the environment, public health, and animal welfare. Uses crop rotation, biodiversity, conservation tillage, and pasture-based livestock husbandry.</p>
+      <div class="topic-tags">
+        <span class="tag">Crop Rotation</span>
+        <span class="tag">Biodiversity</span>
+        <span class="tag">Fair Wages</span>
+      </div>
+    </div>
+    <div class="topic-card reveal reveal-delay-2">
+      <div class="topic-num">03</div>
+      <span class="topic-icon">🌿</span>
+      <h3>Organic Farming</h3>
+      <p>Prohibits artificial fertilizers, pesticides, GMOs, synthetic hormones. Relies on compost, cover crops, green manures, and natural pest control such as beneficial insects.</p>
+      <div class="topic-tags">
+        <span class="tag">Compost</span>
+        <span class="tag">Cover Crops</span>
+        <span class="tag">EU / USDA Cert.</span>
+      </div>
+    </div>
+    <div class="topic-card reveal reveal-delay-3">
+      <div class="topic-num">04</div>
+      <span class="topic-icon">🏙️</span>
+      <h3>Urban Agriculture</h3>
+      <p>Growing food inside cities — rooftop gardens, patio plots, community farms. Reduces food miles and counters the heat-island effect, though it faces challenges of land cost and soil contamination.</p>
+      <div class="topic-tags">
+        <span class="tag">Food Miles</span>
+        <span class="tag">Rooftop Gardens</span>
+        <span class="tag">Heat Island</span>
+      </div>
+    </div>
+    <div class="topic-card reveal reveal-delay-4">
+      <div class="topic-num">05</div>
+      <span class="topic-icon">🔬</span>
+      <h3>Greenhouse & High-Tech Farming</h3>
+      <p>Controlled environments using hydroponics (liquid nutrients), aeroponics (misted roots), and vertical farming in skyscrapers — enabling year-round production with minimal resources.</p>
+      <div class="topic-tags">
+        <span class="tag">Hydroponics</span>
+        <span class="tag">Aeroponics</span>
+        <span class="tag">Vertical Farming</span>
+      </div>
+    </div>
+    <div class="topic-card reveal reveal-delay-5">
+      <div class="topic-num">06</div>
+      <span class="topic-icon">🌍</span>
+      <h3>Climate Mitigation & Water Footprint</h3>
+      <p>Agriculture as a climate solution: agroforestry for carbon storage, peatland protection, soil carbon management. Understanding green, blue, and grey water footprints.</p>
+      <div class="topic-tags">
+        <span class="tag">Agroforestry</span>
+        <span class="tag">Peatlands</span>
+        <span class="tag">Water Footprint</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOGRAPHICS -->
+<section id="infographics">
+  <div class="section-tag">Visual Study Materials</div>
+  <h2 style="color:white">Infographics & Visuals</h2>
+  <p class="section-intro">Click any image to view full-size. These visual summaries are ideal for last-minute revision.</p>
+  <div class="infographics-grid">
+    <div class="infographic-card reveal" onclick="openLightbox('Modern_Agronomist_s_Sustainability_Review.png')">
+      <img src="Modern_Agronomist_s_Sustainability_Review.png" alt="The Modern Agronomist's Review" />
+      <div class="infographic-caption">🗺 The Modern Agronomist's Review — Balancing Scale, Science & Sustainability</div>
+    </div>
+    <div class="infographic-card reveal reveal-delay-1" onclick="openLightbox('Timeline_of_Agricultural_Evolution.png')">
+      <img src="Timeline_of_Agricultural_Evolution.png" alt="Timeline of Agricultural Evolution" />
+      <div class="infographic-caption">📅 Timeline — From Paleolithic Roots to Soilless Futures</div>
+    </div>
+  </div>
+</section>
+
+<!-- MINDMAP -->
+<section id="mindmap">
+  <div class="section-tag" style="color:var(--lime);font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;">Mind Map</div>
+  <h2>Full Topic Overview</h2>
+  <p>A structured mind map of all six topic areas and their key sub-concepts.</p>
+  <img src="NotebookLM_Mind_Map.png" alt="Mind Map of Modern Agriculture topics" onclick="openLightbox('NotebookLM_Mind_Map.png')" style="cursor:zoom-in;" />
+</section>
+
+<!-- GLOSSARY -->
+<section id="glossary">
+  <div class="section-tag">Key Terminology</div>
+  <h2>Essential Glossary</h2>
+  <p class="section-intro">Master these terms before the exam. Definitions are drawn directly from the course materials.</p>
+  <div class="glossary-grid">
+    <div class="gloss-item reveal">
+      <div class="gloss-term">Monoculture</div>
+      <div class="gloss-def">The practice of growing a single crop (e.g. corn, wheat, cotton) on the same land year after year, depleting soil nutrients and requiring heavy chemical inputs.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-1">
+      <div class="gloss-term">Hydroponics</div>
+      <div class="gloss-def">A cultivation technique using water with dissolved nutrients instead of soil. It shortens the plant growing cycle and uses less water than traditional methods.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-2">
+      <div class="gloss-term">Aeroponics</div>
+      <div class="gloss-def">Growing plants without soil or liquid medium — roots are suspended in air and periodically misted with nutrient-laden water, maximising aeration and reducing disease.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-3">
+      <div class="gloss-term">Virtual Water</div>
+      <div class="gloss-def">The total volume of water used throughout the entire production process of a good — "hidden" water embedded in food, textiles, and other commodities.</div>
+    </div>
+    <div class="gloss-item reveal">
+      <div class="gloss-term">Agroforestry</div>
+      <div class="gloss-def">Land-use systems where trees and shrubs are managed alongside crops or livestock. Trees sequester carbon and reduce soil erosion via hedgerows and contour planting.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-1">
+      <div class="gloss-term">Green Water</div>
+      <div class="gloss-def">Rainwater that is stored in the soil and taken up by plants. It represents the dominant share of the water footprint of most agricultural products.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-2">
+      <div class="gloss-term">Blue Water</div>
+      <div class="gloss-def">Surface and groundwater (rivers, lakes, aquifers) used for irrigation or industrial processing — the most visible and contested water resource in farming.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-3">
+      <div class="gloss-term">Grey Water</div>
+      <div class="gloss-def">The volume of water required to dilute pollutants (fertilizers, pesticides) to acceptable quality standards — an indirect measure of agricultural pollution.</div>
+    </div>
+    <div class="gloss-item reveal">
+      <div class="gloss-term">Peatlands</div>
+      <div class="gloss-def">Waterlogged ecosystems that accumulate partially decomposed organic matter. Despite covering only 3% of Earth's land, they store twice as much carbon as all forests combined.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-1">
+      <div class="gloss-term">Vertical Farming</div>
+      <div class="gloss-def">Greenhouse operations within multi-storey urban buildings. By moving food production into cities, rural lands can be reforested and topsoil restored.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-2">
+      <div class="gloss-term">Cover Crops</div>
+      <div class="gloss-def">Plants grown between main crops to protect the soil from erosion, suppress weeds, and replenish organic matter — a cornerstone of organic soil management.</div>
+    </div>
+    <div class="gloss-item reveal reveal-delay-3">
+      <div class="gloss-term">Food Miles</div>
+      <div class="gloss-def">The distance food travels from production to consumer. Urban agriculture aims to reduce food miles, cutting transport emissions and supporting local food systems.</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="section-tag">Self-Assessment</div>
+  <h2>Practice Quiz</h2>
+  <p class="section-intro">Test your knowledge. Select an answer to reveal instant feedback.</p>
+  <div class="quiz-container">
+
+    <div class="quiz-q reveal">
+      <div class="quiz-q-text">1. Which type of water refers to the <em>rainwater</em> used directly by crops?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answer(this, false, 'Blue water is surface/groundwater used for irrigation.')">
+          <span class="quiz-opt-letter">A</span> Blue water
+        </div>
+        <div class="quiz-opt" onclick="answer(this, false, 'Grey water is used to dilute pollutants to quality standards.')">
+          <span class="quiz-opt-letter">B</span> Grey water
+        </div>
+        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Green water is the rainwater stored in the soil and used by plants.')">
+          <span class="quiz-opt-letter">C</span> Green water
+        </div>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q reveal reveal-delay-1">
+      <div class="quiz-q-text">2. Agroforestry helps mitigate climate change primarily by…</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answer(this, false, 'Agroforestry actually reduces chemical dependency rather than increasing it.')">
+          <span class="quiz-opt-letter">A</span> Increasing the use of inorganic fertilizers
+        </div>
+        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Trees in agroforestry systems sequester carbon in biomass and soil, and reduce erosion.')">
+          <span class="quiz-opt-letter">B</span> Storing carbon in trees and soil
+        </div>
+        <div class="quiz-opt" onclick="answer(this, false, 'Agroforestry does not eliminate livestock — it often integrates them.')">
+          <span class="quiz-opt-letter">C</span> Eliminating the need for livestock
+        </div>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q reveal reveal-delay-2">
+      <div class="quiz-q-text">3. "Lure" crops in organic farming are used to…</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answer(this, false, 'Lure crops are not replacements for the main crop.')">
+          <span class="quiz-opt-letter">A</span> Replace the main crop in low-yield seasons
+        </div>
+        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Lure crops attract beneficial insects like ladybirds that act as natural predators to pests.')">
+          <span class="quiz-opt-letter">B</span> Attract beneficial insects like ladybirds
+        </div>
+        <div class="quiz-opt" onclick="answer(this, false, 'Organic farming bans synthetic hormones entirely.')">
+          <span class="quiz-opt-letter">C</span> Increase the use of synthetic hormones
+        </div>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q reveal reveal-delay-3">
+      <div class="quiz-q-text">4. Producing 1 kg of beef requires approximately how many litres of water?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answer(this, false, '1,500 litres is a significant underestimate for beef production.')">
+          <span class="quiz-opt-letter">A</span> ~1,500 litres
+        </div>
+        <div class="quiz-opt" onclick="answer(this, false, '5,000 litres is still far below the actual figure.')">
+          <span class="quiz-opt-letter">B</span> ~5,000 litres
+        </div>
+        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Producing 1 kg of beef requires more than 15,000 litres (93% green, 4% blue, 3% grey water).')">
+          <span class="quiz-opt-letter">C</span> &gt;15,000 litres
+        </div>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q reveal reveal-delay-4">
+      <div class="quiz-q-text">5. What is the main difference between hydroponics and aeroponics?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answer(this, false, 'Both techniques actually use no traditional soil at all.')">
+          <span class="quiz-opt-letter">A</span> Hydroponics uses soil; aeroponics does not
+        </div>
+        <div class="quiz-opt" onclick="answer(this, true, 'Correct! Hydroponics uses a liquid nutrient solution; aeroponics mists roots suspended in air with no liquid medium.')">
+          <span class="quiz-opt-letter">B</span> Hydroponics uses a liquid medium; aeroponics mists roots in air
+        </div>
+        <div class="quiz-opt" onclick="answer(this, false, 'It is aeroponics, not hydroponics, that provides maximum root aeration.')">
+          <span class="quiz-opt-letter">C</span> Hydroponics provides more root aeration than aeroponics
+        </div>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources">
+  <div class="section-tag">Study Materials</div>
+  <h2>Download Resources</h2>
+  <p class="section-intro">All course documents, infographics, and study guides — ready to download.</p>
+  <div class="resources-grid">
+    <div class="resource-card reveal">
+      <div class="resource-icon">📄</div>
+      <h4>Comprehensive Study Guide</h4>
+      <p>Full overview of all six topic areas with glossary and explanations. Ideal for structured revision.</p>
+      <a class="resource-link" href="Modern_Agriculture_and_Cultivation_Methods.docx" download>Download .docx →</a>
+    </div>
+    <div class="resource-card reveal reveal-delay-1">
+      <div class="resource-icon">📝</div>
+      <h4>Quiz & Answer Key</h4>
+      <p>True/False, multiple choice, matching, and short-answer questions with full answer key.</p>
+      <a class="resource-link" href="Modern_Agriculture_and_Cultivation_Methods_Study_Guide.docx" download>Download .docx →</a>
+    </div>
+    <div class="resource-card reveal reveal-delay-2">
+      <div class="resource-icon">🌾</div>
+      <h4>Sustainable Methods Deep-Dive</h4>
+      <p>Focused document on sustainable and organic cultivation, livestock, and environmental impact.</p>
+      <a class="resource-link" href="Sustainable_and_Modern_Agricultural_Cultivation_Methods.docx" download>Download .docx →</a>
+    </div>
+    <div class="resource-card reveal reveal-delay-3">
+      <div class="resource-icon">📜</div>
+      <h4>Historical Systems & Techniques</h4>
+      <p>From the Neolithic Revolution to the Columbian Exchange — agriculture through the ages.</p>
+      <a class="resource-link" href="Historical_and_Modern_Agricultural_Systems_and_Techniques.docx" download>Download .docx →</a>
+    </div>
+    <div class="resource-card reveal reveal-delay-4">
+      <div class="resource-icon">🖼️</div>
+      <h4>Slide Deck (CLIL)</h4>
+      <p>14-slide PowerPoint presentation covering all exam topics with visuals and key vocabulary.</p>
+      <a class="resource-link" href="Modern_Agricultural_Paradigms.pptx" download>Download .pptx →</a>
+    </div>
+    <div class="resource-card reveal reveal-delay-5">
+      <div class="resource-icon">🗺️</div>
+      <h4>Infographic Posters</h4>
+      <p>High-resolution visual summaries: Agronomist's Review, Evolution Timeline, and Mind Map.</p>
+      <a class="resource-link" href="Modern_Agronomist_s_Sustainability_Review.png" download>Download PNG →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <p>Pagina creata da <strong>Prof. Crespi</strong> per gli studenti dell'<strong>IIS MENDEL</strong> di Villa Cortese (MI).<br/>
+    Materiale didattico per il modulo CLIL — Modern Agriculture &amp; Cultivation Methods.</p>
+  </div>
+  <div class="footer-right">IIS Mendel · Villa Cortese (MI)</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="Full size" />
+</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Quiz
+  function answer(el, correct, feedback) {
+    const q = el.closest('.quiz-q');
+    if (q.dataset.answered) return;
+    q.dataset.answered = '1';
+    const opts = q.querySelectorAll('.quiz-opt');
+    opts.forEach(o => o.style.pointerEvents = 'none');
+    el.classList.add(correct ? 'correct' : 'wrong');
+    if (!correct) {
+      opts.forEach(o => { if (o.getAttribute('onclick').includes('true')) o.classList.add('correct'); });
+    }
+    const fb = q.querySelector('.quiz-feedback');
+    fb.textContent = (correct ? '✓ ' : '✗ ') + feedback;
+    fb.className = 'quiz-feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
+  }
+</script>
+</body>
+</html>
