@@ -1104,38 +1104,75 @@
       card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
+    var currentQ = 0;
+    var questionResults = [];
+
+    function updateDots() {
+      var dots = document.querySelectorAll('.quiz-dot');
+      dots.forEach(function(d, i) {
+        d.className = 'quiz-dot';
+        if (i === currentQ) d.classList.add('current');
+        else if (questionResults[i] === true)  d.classList.add('answered-ok');
+        else if (questionResults[i] === false) d.classList.add('answered-wrong');
+      });
+      document.getElementById('quiz-counter').textContent = (currentQ+1) + ' / ' + shuffled.length;
+      document.getElementById('quiz-prev').disabled = (currentQ === 0);
+      document.getElementById('quiz-next').disabled = (currentQ === shuffled.length - 1);
+    }
+
+    function goToQuestion(idx) {
+      var cards = document.querySelectorAll('.quiz-q');
+      cards[currentQ].classList.remove('active');
+      currentQ = idx;
+      cards[currentQ].classList.add('active');
+      updateDots();
+    }
+
     function buildQuiz() {
-      answered = 0; correct = 0;
+      answered = 0; correct = 0; currentQ = 0; questionResults = [];
       document.getElementById('quiz-score-card').style.display = 'none';
       document.getElementById('quiz-progress-bar').style.width = '0%';
       document.getElementById('quiz-progress-label').textContent = '0 / 26';
       shuffled = shuffle(QUIZ_BANK);
       var container = document.getElementById('quiz-container');
       container.innerHTML = '';
+
+      // Build dots
+      var dotsEl = document.getElementById('quiz-dots');
+      dotsEl.innerHTML = '';
+      shuffled.forEach(function(_, i) {
+        var dot = document.createElement('span');
+        dot.className = 'quiz-dot' + (i === 0 ? ' current' : '');
+        dot.addEventListener('click', (function(idx){ return function(){ goToQuestion(idx); }; })(i));
+        dotsEl.appendChild(dot);
+        questionResults.push(undefined);
+      });
+
       shuffled.forEach(function(item, qi) {
         var div = document.createElement('div');
-        div.className = 'quiz-q';
-        div.style.cssText = 'opacity:0;transform:translateY(16px);transition:opacity .35s ease '+((qi%5)*0.08)+'s,transform .35s ease '+((qi%5)*0.08)+'s;';
+        div.className = 'quiz-q' + (qi === 0 ? ' active' : '');
         var optsHtml = item.opts.map(function(o, oi) {
           return '<div class="quiz-opt" data-i="'+oi+'"><span class="quiz-opt-letter">'+LETTERS[oi]+'</span> '+o+'</div>';
         }).join('');
         div.innerHTML =
           '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.25rem;">' +
-            '<span style="font-family:\'DM Mono\',monospace;font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:.1em;">Q'+(qi+1)+' / 26</span>' +
+            '<span style="font-family:\'DM Mono\',monospace;font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:.1em;">Q'+(qi+1)+' / '+shuffled.length+'</span>' +
           '</div>' +
           '<div class="quiz-q-text">'+item.q+'</div>' +
           '<div class="quiz-options">'+optsHtml+'</div>' +
           '<div class="quiz-feedback"></div>' +
+          '<button class="quiz-hint-btn" style="margin-top:.75rem;">💡 Suggerimento</button>' +
           '<div class="quiz-hint" style="display:none;margin-top:.6rem;padding:.6rem .9rem;background:rgba(255,255,255,.05);border-radius:3px;font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic;">💡 '+item.hint+'</div>';
         container.appendChild(div);
 
-        // Animate in using IntersectionObserver
-        var obs = new IntersectionObserver(function(entries) {
-          entries.forEach(function(e) {
-            if (e.isIntersecting) { div.style.opacity='1'; div.style.transform='none'; obs.disconnect(); }
-          });
-        }, { threshold: 0.05 });
-        obs.observe(div);
+        // Hint button toggle
+        var hintBtn = div.querySelector('.quiz-hint-btn');
+        var hintBox = div.querySelector('.quiz-hint');
+        hintBtn.addEventListener('click', function() {
+          var visible = hintBox.style.display !== 'none';
+          hintBox.style.display = visible ? 'none' : 'block';
+          hintBtn.textContent = visible ? '💡 Suggerimento' : '🙈 Nascondi';
+        });
 
         div.querySelectorAll('.quiz-opt').forEach(function(opt) {
           opt.addEventListener('click', function() {
@@ -1145,6 +1182,7 @@
             var chosen = parseInt(opt.getAttribute('data-i'));
             var isCorrect = (chosen === item.c);
             if (isCorrect) correct++;
+            questionResults[qi] = isCorrect;
             div.querySelectorAll('.quiz-opt').forEach(function(o){ o.style.pointerEvents='none'; });
             opt.classList.add(isCorrect ? 'correct' : 'wrong');
             if (!isCorrect) div.querySelector('[data-i="'+item.c+'"]').classList.add('correct');
@@ -1152,13 +1190,29 @@
             fb.textContent = isCorrect ? '✓ Correct!' : '✗ Correct answer: ' + item.opts[item.c];
             fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
             div.querySelector('.quiz-hint').style.display = 'block';
+            div.querySelector('.quiz-hint-btn').style.display = 'none';
+            updateDots();
             updateProgress();
+            // Auto-advance after 1.4s if not last
+            if (qi < shuffled.length - 1) {
+              setTimeout(function(){ goToQuestion(qi + 1); }, 1400);
+            }
           });
         });
       });
+
+      updateDots();
     }
 
     buildQuiz();
+
+    document.getElementById('quiz-prev').addEventListener('click', function() {
+      if (currentQ > 0) goToQuestion(currentQ - 1);
+    });
+    document.getElementById('quiz-next').addEventListener('click', function() {
+      if (currentQ < shuffled.length - 1) goToQuestion(currentQ + 1);
+    });
+
     document.getElementById('quiz-new').addEventListener('click', function() {
       buildQuiz();
       document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
